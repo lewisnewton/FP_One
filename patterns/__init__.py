@@ -1,1 +1,1 @@
-from ._patterns import binary
+from ._patterns import fringe

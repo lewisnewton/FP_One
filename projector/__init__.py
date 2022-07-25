@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from ._projector import projector
+from ._projector import screens, Projector

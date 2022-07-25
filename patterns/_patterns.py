@@ -37,8 +37,10 @@ class Fringe:
                 
         self.patterns = patterns
        
-    def gamma_correction(self, gamma):
+def gamma_correction(fringe):
     
-        for i, img in enumerate()
+    for i, img in enumerate(fringe.patterns)
         pass
+
+    
         

@@ -11,7 +11,7 @@ def screens():
     return screen_ids
 
 
-class Projection():
+class Projector():
     
     def __init__(self,screen_id):
         self.screen_id = screen_id
@@ -29,7 +29,7 @@ class Projection():
         self.x = self.screen.x
         self.y = self.screen.y
     
-    def size():
+    def size(self):
         dimension = [self.width, self.height]
         return dimension
         

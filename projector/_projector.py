@@ -7,7 +7,7 @@ import cv2
 def screens():
     
     screen_ids = si.get_monitors()
-    print(screen_ids)        
+          
     return screen_ids
 
 

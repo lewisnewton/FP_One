@@ -6,9 +6,15 @@ import cv2
 
 def screens():
     
-    screen_ids = si.get_monitors()
-          
-    return screen_ids
+    screen_info = si.get_monitors()
+    print(screen_info)
+    
+    idx = []
+    
+    for i in range(len(screen_info)):
+        idx.append(i)
+            
+    return idx, screen_info
 
 
 class Projector():
@@ -42,6 +48,7 @@ class Projector():
         cv2.moveWindow(window_name, self.x - 1,self.y - 1)
         cv2.setWindowProperty(window_name,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
         cv2.imshow(window_name ,img)
+        print('Esc to close')
         cv2.waitKey()
         cv2.destroyAllWindows()
     

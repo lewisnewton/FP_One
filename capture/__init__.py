@@ -1,1 +1,1 @@
-from ._cameras import snap
+from ._cameras import Camera

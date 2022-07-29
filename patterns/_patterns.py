@@ -9,41 +9,41 @@ import numpy as np
 
 class Fringe:
     
-    def __init__(self,size,period,phase_step,dimension ='horizontal',**method):
+    def __init__(self,size,period,dimension ='horizontal',**kwargs):
         
         self.period = period
-        self.phase_step = phase_step
         self.dimension = dimension
-        self.method = method['method']
+        self.phase_step = kwargs['phase_step']
+        self.method = kwargs['method']
         
         if self.method == 'three-phase':
             patterns = pattern_gen(size, 
                                    period, 
-                                   phase_step,
                                    dimension,
-                                   method=self.method)
+                                   method=self.method,
+                                   phase_step=self.phase_step)
             
         elif self.method == 'carre':
             patterns = pattern_gen(size, 
                                    period, 
-                                   phase_step,
                                    dimension,
-                                   method=self.method)
+                                   method=self.method,
+                                   phase_step=self.phase_step)
             
         elif self.method == 'hariharan':
             patterns = pattern_gen(size, 
                                    period, 
-                                   phase_step,
                                    dimension,
-                                   method=self.method)
+                                   method=self.method,
+                                   phase_step=self.phase_step)
             
         elif self.method == 'N-least-squares':
             patterns = pattern_gen(size, 
                                    period, 
-                                   phase_step,
                                    dimension,
                                    method=self.method,
-                                   images=method['no_images'])
+                                   phase_step=self.phase_step,
+                                   images=kwargs['no_images'])
             
         else:
             raise ValueError('invalid method: try three-phase, carre, hariharan or N-least-squares')
@@ -51,24 +51,27 @@ class Fringe:
         self.patterns = patterns
         
 
-def pattern_gen(size, period, phase_step, dimension ='horizontal',**method):
+def pattern_gen(size, period, dimension ='horizontal',**kwargs):
+    
+    method = kwargs['method']
+    phase_step = kwargs['phase_step']
     
     w = size[1]
     h = size[0]
         
     x,y = np.meshgrid(range(w),range(h))
     
-    if method['method'] == 'three-phase':
+    if method == 'three-phase':
         k  = [-1, 0, 1]
             
-    elif method['method'] == 'carre':
+    elif method == 'carre':
         k = [-3, -1, 1, 3]
             
-    elif method['method'] == 'hariharan':
+    elif method == 'hariharan':
         k = [-2,-1, 0, 1, 2]
             
-    elif method['method'] == 'N-least-squares':
-        k = range(0,method['no_images'])
+    elif method == 'N-least-squares':
+        k = range(0,kwargs['no_images'])
             
     else:
         raise ValueError('invalid method: try three-phase, carre, hariharan or N-least-squares')
